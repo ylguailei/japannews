@@ -36,7 +36,7 @@ public class MainActivity extends ActivityGroup {
 	// 当前ViewPager索引
 	private int pagerIndex = 0; 
 	private ArrayList<View> menuViews = null;
-	/*
+	/* 
 	 * 主界面的ViewGroup
 	 * */
 	private ViewGroup main = null;
