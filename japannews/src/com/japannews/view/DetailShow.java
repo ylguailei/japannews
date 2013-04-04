@@ -11,6 +11,7 @@ import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.webkit.SslErrorHandler;
@@ -124,8 +125,25 @@ public class DetailShow extends Activity {
 			}
 		});
 	}
-
 	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			Intent intent = new Intent(DetailShow.this,MainActivity.class);
+			startActivity(intent);
+			break;
+
+		default:
+			break;
+		}
+		// TODO Auto-generated method stub
+		return super.onKeyDown(keyCode, event);
+	}
+
+
+
+
 	private class AsyncProcess extends AsyncTask<String, Void, Void>{
 
 //		private Context context;

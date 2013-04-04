@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="c_topbar">#ffffff</color>
+    <color name="white">#FFFFFF</color>  
+	<color name="unfocused">#FFFFFF</color>  
+	<color name="pressed">#C0C0C0</color>  
+	<color name="selected">#DCDCDC</color>  
+	<color name="focused">#C0C0C0</color>
+	<color name="divider">#F5F5F5</color>
 </resources>

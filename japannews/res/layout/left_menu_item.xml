@@ -4,10 +4,26 @@
 
     <!--
     This ImageView is used as a menu.
-    -->
+    
     <ImageView android:id="@+id/menu" android:src="@drawable/fb_menu" android:layout_width="fill_parent" android:visibility="invisible"
         android:layout_height="fill_parent" android:scaleType="fitStart" />
-
+-->
+	<LinearLayout android:id="@+id/menu"
+	    android:background="@drawable/bitmap_book_read_chapterlist_repeat" 
+	    android:layout_width="fill_parent" android:visibility="invisible"
+        android:layout_height="fill_parent" android:scaleType="fitStart">
+	    <ListView 
+	    android:id="@+id/lv_Left_Type"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:fastScrollEnabled="true"
+	    android:focusable="true" 
+	    android:background="@color/white"
+	    android:divider="@color/divider"
+	    android:dividerHeight="1dip"
+	    />
+	</LinearLayout>
+	    
     <!--
     This HorizontalScrollView will contain a LinearLayout that will contain a transparent
     View (that allows the menu above to show through) and the other application Views.

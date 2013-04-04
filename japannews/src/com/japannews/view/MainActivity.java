@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import you.lib.common.AlertHelper;
 
+import com.japannews.entity.ViewHolder;
 import com.japannews.menu.MyHorizontalScrollView;
 import com.japannews.menu.MyHorizontalScrollView.SizeCallback;
 import com.japannews.menu.SlideMenuLayout;
@@ -27,11 +28,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends ActivityGroup {
-
+	
+	/*
+	 * 日志TAG
+	 * */
+	private final String TAG = "JapanNews.MainActivity";
 	MyHorizontalScrollView scrollView;
 	// 当前ViewPager索引
 	private int pagerIndex = 0; 
@@ -49,8 +57,25 @@ public class MainActivity extends ActivityGroup {
 	
 	private ImageView btnSlide;
 	private View app;
+	/*
+	 * 左侧Item菜单列表
+	 * */
 	private View left_item_menu;
+	private myListViewAdapter leftAda;
+	private ListView leftLv;
 	LayoutInflater inflater;
+	
+	private final String[] left_List_Items={
+			"123",
+			"123",
+			"123",
+			"123",
+			"123",
+			"123",
+			"123",
+			"123",
+			"123"
+	};
 	
 //	private Handler checkUpdateHandler = new Handler();
 //	private UpdateHelper updateHelper;
@@ -92,37 +117,24 @@ public class MainActivity extends ActivityGroup {
         menuViews = new ArrayList<View>(); 
         menu = new SlideMenuLayout(this);
         
+        /*
+         * 顶部可滑动菜单
+         * */
         String[][] menus = {
-				 {getResources().getString(R.string.item_top),
-				  getResources().getString(R.string.item_business)},
-				 {getResources().getString(R.string.item_world),
-				  getResources().getString(R.string.item_entertainment)},
-				 {getResources().getString(R.string.item_technology),
-				  getResources().getString(R.string.item_sports)},
-				 {getResources().getString(R.string.item_titbits)}
-		    };
+   			 {getResources().getString(R.string.item_top),
+   			  getResources().getString(R.string.item_business)},
+   			 {getResources().getString(R.string.item_world),
+   			  getResources().getString(R.string.item_entertainment)},
+   			 {getResources().getString(R.string.item_technology),
+   			  getResources().getString(R.string.item_sports)},
+   			 {getResources().getString(R.string.item_titbits)}
+   	    };
         for(int i = 0;i < menus.length;i++){
         	menuViews.add(menu.getSlideMenuLinerLayout(menus[i],screenWidth));
         }
         
-        //main = (ViewGroup)inflater.inflate(R.layout.main, null);
-        
         setContentView(inflater.inflate(R.layout.left_menu_item, null));
-        // 左右导航图片按钮
-//        imagePrevious = (ImageView)findViewById(R.id.ivPreviousButton);
-//        imageNext = (ImageView) findViewById(R.id.ivNextButton);
-//        imagePrevious.setOnClickListener(new ImagePreviousOnclickListener());
-//        imageNext.setOnClickListener(new ImageNextOnclickListener());
-//        
-//        if(menuViews.size() > 1){
-//        	imageNext.setVisibility(View.VISIBLE);
-//        }
         
-        
-        
-//        viewPager = (ViewPager)main.findViewById(R.id.slideMenu);  
-//        viewPager.setAdapter(new SlideMenuAdapter());  
-//        viewPager.setOnPageChangeListener(new SlideMenuChangeListener());  
         
         scrollView = (MyHorizontalScrollView) findViewById(R.id.myScrollView);
         
@@ -130,20 +142,39 @@ public class MainActivity extends ActivityGroup {
         /*设置list*/
         app = inflater.inflate(R.layout.main, null);
         left_item_menu = findViewById(R.id.menu);
+        //left_item_menu.setFocusable(true);
+        
+        leftAda = new myListViewAdapter(this);
+        leftLv = (ListView)left_item_menu.findViewById(R.id.lv_Left_Type);
+        leftLv.setAdapter(leftAda);
+        
         
         btnSlide = (ImageView)app.findViewById(R.id.ivPreviousButton);
-        // Create a transparent view that pushes the other views in the HSV to the right.
+        
+        // 左右导航图片按钮
+        imagePrevious = (ImageView)app.findViewById(R.id.ivPreviousButton);
+        imageNext = (ImageView) app.findViewById(R.id.ivNextButton);
+        imagePrevious.setOnClickListener(new ImagePreviousOnclickListener());
+        imageNext.setOnClickListener(new ImageNextOnclickListener());
+        
+        if(menuViews.size() > 1){
+        	imageNext.setVisibility(View.VISIBLE);
+        }
+        viewPager = (ViewPager)app.findViewById(R.id.slideMenu);  
+        viewPager.setAdapter(new SlideMenuAdapter());  
+        viewPager.setOnPageChangeListener(new SlideMenuChangeListener());  
+        
+
+		// Create a transparent view that pushes the other views in the HSV to the right.
         // This transparent view allows the menu to be shown when the HSV is scrolled.
         View transparent = new TextView(this);
         //在这里,将左边的菜单栏设置成为了透明的
         transparent.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
         final View[] children = new View[] { transparent, app };
-
-        // Scroll to app (view[1]) when layout finished.
+     // Scroll to app (view[1]) when layout finished.
         int scrollToViewIdx = 1;
-        scrollView.initViews(children, scrollToViewIdx, new SizeCallbackForMenu(btnSlide));
-        
+        scrollView.initViews(children, scrollToViewIdx, new SizeCallbackForMenu());
 	}
 	
 	/**
@@ -152,16 +183,19 @@ public class MainActivity extends ActivityGroup {
      */
     class SizeCallbackForMenu implements SizeCallback {
         int btnWidth;
-        View btnSlide;
+        //View btnSlide;
 
-        public SizeCallbackForMenu(View btnSlide) {
+//        public SizeCallbackForMenu(View btnSlide) {
+//            super();
+//            this.btnSlide = btnSlide;
+//        }
+        public SizeCallbackForMenu() {
             super();
-            this.btnSlide = btnSlide;
         }
 
         @Override
         public void onGlobalLayout() {
-            btnWidth = btnSlide.getMeasuredWidth();
+            btnWidth = 50;
             System.out.println("btnWidth=" + btnWidth);
         }
 
@@ -183,7 +217,6 @@ public class MainActivity extends ActivityGroup {
     boolean menuOut = false;
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_MENU:
 			Context context = left_item_menu.getContext();
@@ -191,20 +224,28 @@ public class MainActivity extends ActivityGroup {
 	         if (!menuOut) {
 	             // Scroll to 0 to reveal menu
 	             int left = 0;
-	             Log.v("left", String.valueOf(left));
 	             scrollView.smoothScrollTo(left, 0);
 	             left_item_menu.setVisibility(View.VISIBLE);
 	         } else {
 	             // Scroll to menuWidth so menu isn't on screen.
 	             int left = menuWidth;
-	             Log.v("left", String.valueOf(left));
 	             scrollView.smoothScrollTo(left, 0);
 	             left_item_menu.setVisibility(View.INVISIBLE);
+	             
+	             /* 
+	              * 这里他娘的非要让app这个View获取焦点,不然他妈个比再次按menu的时候不会响应keyDown事件,因为焦点丢了
+	              * */
+	             /********************************************/
+	             app.setFocusable(true);
+	             app.setFocusableInTouchMode(true);
+	             app.requestFocus();
+	             /********************************************/
 	         }
 	         menuOut = !menuOut;
 			break;
 
 		default:
+			Log.v(TAG,String.valueOf(keyCode));
 			break;
 		}
 		// TODO Auto-generated method stub
@@ -418,4 +459,66 @@ public class MainActivity extends ActivityGroup {
     	}
     }
 
+    
+    /*
+	 * 列表中自定义的适配器
+	 */
+	public class myListViewAdapter extends BaseAdapter{
+		
+		private LayoutInflater mInflater;
+		public myListViewAdapter(Context context){
+			this.mInflater = LayoutInflater.from(context);
+		}
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return left_List_Items.length;
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			final ViewHolder hoder;
+			if (convertView == null) {
+				hoder = new ViewHolder();
+				convertView = mInflater.inflate(R.layout.item_detail_left,null);
+				hoder.text = (TextView)convertView.findViewById(R.id.left_item_text);
+				convertView.setTag(hoder);
+			}else {
+				hoder = (ViewHolder)convertView.getTag();
+			}
+			hoder.text.setText(left_List_Items[position]);
+			hoder.text.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+//					Intent detailShow = new Intent(mInflater.getContext(),DetailShow.class);
+//					Bundle bund = new Bundle();
+//					bund.putString("title", totalList.get(position).getTitle());
+//					bund.putString("description", totalList.get(position).getDescription());
+//					bund.putString("link", totalList.get(position).getLink());
+//					bund.putString("category", totalList.get(position).getCategory());
+//					bund.putString("pubdate", totalList.get(position).getPubDate());
+//					detailShow.putExtras(bund);
+//					startActivity(detailShow);
+				}
+			});
+			//Toast.makeText(mInflater.getContext(), myList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+			return convertView;
+		}
+		
+	}
 }

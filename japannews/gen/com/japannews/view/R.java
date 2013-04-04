@@ -21,6 +21,12 @@ public final class R {
     }
     public static final class color {
         public static final int c_topbar=0x7f050000;
+        public static final int divider=0x7f050006;
+        public static final int focused=0x7f050005;
+        public static final int pressed=0x7f050003;
+        public static final int selected=0x7f050004;
+        public static final int unfocused=0x7f050002;
+        public static final int white=0x7f050001;
     }
     public static final class dimen {
         public static final int padding_large=0x7f060002;
@@ -37,47 +43,51 @@ public final class R {
         public static final int ic_action_search=0x7f020006;
         public static final int ic_launcher=0x7f020007;
         public static final int item_book_reader_chapterlist_spliter=0x7f020008;
-        public static final int logo_m=0x7f020009;
-        public static final int menu_bg=0x7f02000a;
-        public static final int next_button=0x7f02000b;
-        public static final int previous_button=0x7f02000c;
-        public static final int startmain=0x7f02000d;
-        public static final int top_back_image=0x7f02000e;
-        public static final int top_bg=0x7f02000f;
-        public static final int topbar=0x7f020010;
+        public static final int listview_bg=0x7f020009;
+        public static final int logo_m=0x7f02000a;
+        public static final int menu_bg=0x7f02000b;
+        public static final int next_button=0x7f02000c;
+        public static final int previous_button=0x7f02000d;
+        public static final int startmain=0x7f02000e;
+        public static final int top_back_image=0x7f02000f;
+        public static final int top_bg=0x7f020010;
+        public static final int topbar=0x7f020011;
     }
     public static final class id {
-        public static final int LinearLayout01=0x7f0a0007;
+        public static final int LinearLayout01=0x7f0a0008;
         public static final int LinearLayout02=0x7f0a0001;
-        public static final int btnHome=0x7f0a0005;
-        public static final int imgShow=0x7f0a0013;
-        public static final int item_header=0x7f0a000d;
-        public static final int ivMenuBackground=0x7f0a0011;
-        public static final int ivNextButton=0x7f0a0010;
-        public static final int ivPreviousButton=0x7f0a000f;
-        public static final int linearLayout01=0x7f0a000c;
-        public static final int linearLayoutContent=0x7f0a0012;
-        public static final int lvShow=0x7f0a0008;
-        public static final int menu=0x7f0a0009;
-        public static final int menu_settings=0x7f0a0014;
-        public static final int myScrollView=0x7f0a000a;
+        public static final int btnHome=0x7f0a0006;
+        public static final int imgShow=0x7f0a0015;
+        public static final int item_header=0x7f0a000f;
+        public static final int ivMenuBackground=0x7f0a0013;
+        public static final int ivNextButton=0x7f0a0012;
+        public static final int ivPreviousButton=0x7f0a0011;
+        public static final int left_item_text=0x7f0a0004;
+        public static final int linearLayout01=0x7f0a000e;
+        public static final int linearLayoutContent=0x7f0a0014;
+        public static final int lvShow=0x7f0a0009;
+        public static final int lv_Left_Type=0x7f0a000b;
+        public static final int menu=0x7f0a000a;
+        public static final int menu_settings=0x7f0a0016;
+        public static final int myScrollView=0x7f0a000c;
         public static final int newsTitle=0x7f0a0003;
-        public static final int slideMenu=0x7f0a000e;
-        public static final int top=0x7f0a000b;
+        public static final int slideMenu=0x7f0a0010;
+        public static final int top=0x7f0a000d;
         public static final int top_navigate=0x7f0a0000;
-        public static final int txtFooter=0x7f0a0004;
-        public static final int txtTitlt=0x7f0a0006;
+        public static final int txtFooter=0x7f0a0005;
+        public static final int txtTitlt=0x7f0a0007;
         public static final int wbShow=0x7f0a0002;
     }
     public static final class layout {
         public static final int detail_show=0x7f030000;
         public static final int item_detail=0x7f030001;
-        public static final int item_footer=0x7f030002;
-        public static final int item_header=0x7f030003;
-        public static final int item_list=0x7f030004;
-        public static final int left_menu_item=0x7f030005;
-        public static final int main=0x7f030006;
-        public static final int welcome=0x7f030007;
+        public static final int item_detail_left=0x7f030002;
+        public static final int item_footer=0x7f030003;
+        public static final int item_header=0x7f030004;
+        public static final int item_list=0x7f030005;
+        public static final int left_menu_item=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int welcome=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f090000;
