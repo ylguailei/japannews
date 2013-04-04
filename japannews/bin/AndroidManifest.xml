@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.japannews.view"
+    android:versionCode="1"
+    android:versionName="1.0"
+    android:configChanges="keyboardHidden|orientation" >
+
+     <!-- The application's publisher ID assigned by AdMob -->
+    <meta-data android:value="a1510beaedf38f2" android:name="ADMOB_PUBLISHER_ID" />
+    <meta-data android:value="true" android:name="ADMOB_ALLOW_LOCATION_FOR_ADS" />
+    
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="9" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/logo_m"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" ></activity>
+        <activity android:name=".ShowActivityList"></activity>
+        <activity android:name=".WelCome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailShow"></activity>
+        <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
+    </application>
+
+</manifest>

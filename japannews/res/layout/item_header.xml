@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_navigate"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:background="@drawable/top_back_image"
+    android:layout_alignParentTop="true">
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_home_selector"
+        android:gravity="left"
+        />
+    <TextView android:id="@+id/txtTitlt" 
+            android:text="@string/main_title" 
+            android:layout_width="fill_parent" 
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/c_topbar" />
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_key">a1510beaedf38f2</string>
+    <string name="app_name">日本スーパーニュース</string>
+    <string name="pagename">com.japannews</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+	<string name="main_title">日本スーパーニュース</string>
+	
+	<string name="item_top">トップ</string>
+	<string name="item_business">ビジネス</string>
+	<string name="item_world">ワールド</string>
+	<string name="item_entertainment">エンタテインメント</string>
+	<string name="item_technology">テクノロジー</string>
+	<string name="item_sports">スポーツ</string>
+	<string name="item_titbits">世界のこぼれ話</string>
+	<string name="item_footer">もっと見る</string>
+	
+	<string name="dialog_waiting">読み込み中</string>
+	<string name="NoNetWork_Tips_Title">ネット設置</string>
+	<string name="NoNetWork_Tips_Content">利用できるネットがありません</string>
+	<string name="NoNetWork_Tips_Setting">設置する</string>
+	<string name="NoNetWork_Tips_Out">終了する</string>
+	
+	<string name="exit_content">日本スーパーニュースを終了しますか</string>
+	<string name="exit_ok">終了します</string>
+	<string name="exit_cancel">終了しません</string>
+	
+	<string name="toast_nomore_data">もっとのデータがありません</string>
+	
+	<string name="apk_Server">http://app.localinfos.net/japannews/</string>
+	<string name="apk_Name">japannews.apk</string>
+	<string name="apk_verjson">japannews.html</string>
+	<string name="apk_SaveName">japannews.apk</string>
+</resources>
